@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Alert } from 'antd';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Signin = ({ updateUser }) => {
     const [open, setOpen] = useState(false);
@@ -11,7 +11,7 @@ const Signin = ({ updateUser }) => {
         password: ""
     })
     console.log(loginInfo)
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const showModal = () => {
     setOpen(true);
@@ -30,7 +30,7 @@ const Signin = ({ updateUser }) => {
             if (r.ok) {
                 r.json().then((user) => {
                     updateUser(user)
-                    navigate('/profile');
+                    history.push("/profile");
                 });
             } else {
                 r.json().then((json) => setErrors(json.errors));

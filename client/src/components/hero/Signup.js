@@ -1,19 +1,20 @@
 import { Button, Modal, Form, Input, Alert } from 'antd';
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 function Signup({ updateUser }) {
     const [openSignup, setOpenSignup] = useState(false)
     const [newUser, setNewUser] = useState({
         name: "",
         email: "",
-        age:"",
-        password: ""
+        password: "",
+        age:""
     })
-   
+    const history = useHistory();
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    function handleOpen() {
+    function handleOpen({updateUser}) {
         setOpenSignup(true)
     }
     function handleClose() {
@@ -29,31 +30,33 @@ function Signup({ updateUser }) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newUser),
         }).then((r) => {
-        setIsLoading(false);
+            setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => {
-                    onLogin(user)});
+                    updateUser(user);
+                    history.push("/");
+                });
             } else {
-                r.json().then((err) => setErrors(err.errors));
+                r.json().then((json) => setErrors(json.errors));
             }
         });
     }
-    function handleInputChange(e) {
-        setRsvpInfo({
-            ...rsvpInfo, [e.target.name]:e.target.value
-        })
-    }
+        function handleInputChange(e) {
+            setNewUser({
+                ...newUser, [e.target.name]:e.target.value
+            })
+        }
     return (
         <>
-            <Button onClick={showRsvp}>Create New Account</Button>
+            <Button onClick={handleOpen}>Create New Account</Button>
             <Modal 
                 title="User Registration" 
-                open={isRsvpVisible}
+                open={openSignup}
                 onCancel={handleClose}
                 onOk={handleClose}
                 footer={null}
             >
-                {errors&&errors.length>0?
+                {errors?
                 <div>
                     <Alert message={
                         errors.map((err)=>{
@@ -76,8 +79,8 @@ function Signup({ updateUser }) {
                     onFinish={handleSubmit}
                 >
                     <Form.Item
-                        label="Full Name"
-                        name="full_name"
+                        label="Name"
+                        name="name"
                         rules={[
                         {
                             required: true,
@@ -85,7 +88,7 @@ function Signup({ updateUser }) {
                         },
                         ]}
                     >
-                        <Input name="full_name" onChange={handleInputChange} />
+                        <Input name="name" onChange={handleInputChange} />
                     </Form.Item>
                     <Form.Item
                         label="Email"
@@ -110,7 +113,7 @@ function Signup({ updateUser }) {
                         },
                         ]}
                     >
-                        <Input.Password name="age" onChange={handleInputChange}  />
+                        <Input name="age" onChange={handleInputChange}  />
                     </Form.Item>
                     <Form.Item
                         label="Password"
@@ -122,7 +125,7 @@ function Signup({ updateUser }) {
                         },
                         ]}
                     >
-                        <Input.Password name="age" onChange={handleInputChange} />
+                        <Input.Password name="password" onChange={handleInputChange} />
                     </Form.Item>
                     
                     <Form.Item

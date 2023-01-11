@@ -1,9 +1,9 @@
 import Header from './Header'
 
-const Home = ({user, updateUser}) => {
+const Home = ({updateUser}) => {
   return (
     <>
-        <Header user={user} updateUser={updateUser} />
+        <Header  updateUser={updateUser} />
     </>
   )
 }

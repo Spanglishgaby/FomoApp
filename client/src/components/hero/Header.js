@@ -15,7 +15,7 @@ import Signin from './Signin';
 import { Space } from 'antd';
 import Signup from './Signup';
 
-const Header = ({user,updateUser}) => {
+const Header = ({updateUser}) => {
   return (
     <div className='main'>
         <Nav>
@@ -33,7 +33,7 @@ const Header = ({user,updateUser}) => {
           </NavMenu>
           <Space>
             <Signin updateUser={updateUser}/>
-            <Signup user={user}/>
+            <Signup updateUser={updateUser}/>
           </Space>
         </NavBarContainer>
       </Nav>
