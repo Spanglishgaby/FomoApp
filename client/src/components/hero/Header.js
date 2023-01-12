@@ -6,9 +6,9 @@ import {
   Nav,
   NavBarContainer,
   NavLogo,
-  NavMenu,
-  NavItem,
-  NavLinks,
+  // NavMenu,
+  // NavItem,
+  // NavLinks,
 } from "./NavElements";
 import logo from "./logo.png"
 import Signin from './Signin';
@@ -23,14 +23,14 @@ const Header = ({updateUser}) => {
           <NavLogo to="/">
           <img className="logo" src={logo} alt="Logo" /> 
             </NavLogo>
-          <NavMenu>
+          {/* <NavMenu>
             <NavItem>
               <NavLinks to="/">Home</NavLinks>
             </NavItem>
             <NavItem>
               <NavLinks to="/signin">Contact</NavLinks>
             </NavItem>
-          </NavMenu>
+          </NavMenu> */}
           <Space>
             <Signin updateUser={updateUser}/>
             <Signup updateUser={updateUser}/>

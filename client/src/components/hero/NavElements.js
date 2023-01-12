@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
 export const Nav = styled.nav`
-  background: #0A1931;
+  background: #FF7E20;
   height: 80px;
   /* width:1920px; */
   /* margin:0px;  */

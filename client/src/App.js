@@ -7,8 +7,8 @@ import Dashboard from "./components/Profile/Dashboard";
 function App() {
   const [user, setUser] = useState({});
   const updateUser = (user) => setUser(user);
+
 useEffect(() => {
-  // auto-login
   fetch("/me").then((r) => {
     if (r.ok) {
       r.json().then((user) => setUser(user));
@@ -22,7 +22,7 @@ useEffect(() => {
       <Home  updateUser={updateUser} />
     </Route>
     <Route exact path="/profile">
-      <Dashboard  />
+      <Dashboard user={user} setUser={setUser} />
     </Route>
   </Switch>
 )

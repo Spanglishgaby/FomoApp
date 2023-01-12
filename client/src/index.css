@@ -57,3 +57,56 @@ video {
   transition: all 0.2s ease-in-out;
   background: #C49248;
 }
+.ant-layout-header {
+  background-color: #FF7E20 !important;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  padding: 0 24px;
+  max-width: 1900px;
+  
+}
+.logo2{
+  width: 190px;
+  height: 60px;
+  justify-self: flex-start;
+  cursor: pointer;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.ant-layout {
+  min-height: 94vh !important;
+}
+
+#sidebar {
+  background-color: #ffff !important;
+  
+}
+
+#sidebar .ant-layout-sider-children {
+  padding-top: 2rem;
+ 
+}
+
+#sidebar .ant-menu {
+  background: transparent !important;
+  color: black;
+  border-right: none !important;
+  /* text-align: center; */
+  font-size: 22px;
+  font-family: 'Montserrat Alternates', sans-serif;
+ padding: 0 2px ;
+}
+
+#sidebar .ant-menu-item {
+  margin-top: 2rem;
+  position: center;
+}
+
+#content {
+  padding-left: 5rem;
+  padding-top: 5rem;
+}
