@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Alert } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
 
 const Signin = ({ updateUser }) => {
@@ -43,7 +44,7 @@ const Signin = ({ updateUser }) => {
     }
   return (
     <>
-            <Button onClick={showModal}>Sign In</Button>
+            <Button shape='round' className="BtnSignIn" onClick={showModal}>Sign In</Button>
             <Modal 
                 title="User Login" 
                 open={open}
@@ -60,48 +61,33 @@ const Signin = ({ updateUser }) => {
                 </div>:null}
                 <Form
                     name="login"
-                    labelCol={{
-                        span: 6,
-                    }}
-                    wrapperCol={{
-                        span: 16,
-                    }}
-                    autoComplete="off"
+                    className="login-form"
+                    // autoComplete="off"
+                    // initialValues={{ remember: true }} checkbox remember me
                     onFinish={handleSubmit}
+                    wrapperCol={{offset: 5}}
                 >
                     <Form.Item
-                        label="Email"
+                        // label="Email"
                         name="email"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                        ]}
+                        rules={[{required: true, message: 'Please input your email!'}]}
                     >
-                        <Input name="email" onChange={handleInputChange} />
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" name="email" onChange={handleInputChange} />
                     </Form.Item>
                     <Form.Item
-                        label="Password"
+                        // label="Password"
                         name="password"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                        ]}
+                        rules={[{required: true,message: 'Please input your password!'}]}
                     >
-                        <Input.Password name="password" onChange={handleInputChange} />
+                        <Input.Password  prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password" name="password" onChange={handleInputChange} />
                     </Form.Item>
                     <Form.Item
-                        wrapperCol={{
-                        offset: 10,
-                        span: 16,
-                        }}
+                        wrapperCol={{offset: 5}}
                     >
-                        <Button htmlType="submit">
+                        <Button type="primary" htmlType="submit" className="login-form-button">
                         Submit
                         </Button>
+                        Or <a href="/">register now!</a>
                     </Form.Item>
                 </Form>
             </Modal>

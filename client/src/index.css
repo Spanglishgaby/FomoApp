@@ -23,3 +23,37 @@ video {
   width: 200px;
   height: 60px;
 }
+.login-form {
+  max-width: 360px;
+  align-items: center;
+}
+
+.login-form-button {
+  width: 100%;
+}
+.BtnSignIn{
+  border-radius: 50px;
+  background: #CEABF6;
+  color: black;
+  font-size: 15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}
+.BtnSignIn:hover {
+  transition: all 0.2s ease-in-out;
+  background: #B091D1;
+}
+.BtnSignUp{
+  border-radius: 50px;
+  background: #FFBD59;
+  color: black;
+  font-size: 15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}
+.BtnSignUp:hover {
+  transition: all 0.2s ease-in-out;
+  background: #C49248;
+}

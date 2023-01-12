@@ -48,7 +48,7 @@ function Signup({ updateUser }) {
         }
     return (
         <>
-            <Button onClick={handleOpen}>Create New Account</Button>
+            <Button shape='round' className="BtnSignUp" onClick={handleOpen}>Register</Button>
             <Modal 
                 title="User Registration" 
                 open={openSignup}
@@ -56,86 +56,60 @@ function Signup({ updateUser }) {
                 onOk={handleClose}
                 footer={null}
             >
+                {/* {errors?
+                <div>
+                    <Alert message={errors.map((err)=>{return(<li>{err}</li>)})} type="error" />
+                </div>:null} */}
+
                 {errors?
                 <div>
-                    <Alert message={
-                        errors.map((err)=>{
-                            return(
-                                <li>{err}</li>
-                            )
-                        })
-                    } type="error" />
+                    {errors.map((err,index)=>{return (<Alert key={index} message={err} type="error" />)
+                    })}
                     <p></p>
                 </div>:null}
                 <Form
                     name="registration"
                     labelCol={{
-                        span: 9,
+                        span: 5,
                     }}
-                    wrapperCol={{
-                        span: 16,
-                    }}
+                    // wrapperCol={{offset: 5}}
                     autoComplete="off"
                     onFinish={handleSubmit}
                 >
                     <Form.Item
                         label="Name"
                         name="name"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please input your full name!',
-                        },
-                        ]}
+                        rules={[{required: true, message: 'Please input your full name!'}]}
                     >
                         <Input name="name" onChange={handleInputChange} />
                     </Form.Item>
                     <Form.Item
                         label="Email"
                         name="email"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                        ]}
-                        
+                        rules={[{ required: true, message: 'Please input your email!'}]}
                     >
                         <Input name="email" onChange={handleInputChange} />
                     </Form.Item>
                     <Form.Item
                         label="Age"
                         name="age"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please confirm your age!',
-                        },
-                        ]}
+                        rules={[{ required: true,message: 'Please confirm your age!'}]}
                     >
                         <Input name="age" onChange={handleInputChange}  />
                     </Form.Item>
                     <Form.Item
                         label="Password"
                         name="password"
-                        rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                        ]}
+                        rules={[{required: true,message: 'Please input your password!'}]}
                     >
                         <Input.Password name="password" onChange={handleInputChange} />
                     </Form.Item>
                     
                     <Form.Item
-                        wrapperCol={{
-                        offset: 10,
-                        span: 16,
-                        }}
+                        wrapperCol={{offset: 5}}
                     >
-                        <Button htmlType="submit">
-                        Submit
+                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        Register
                         </Button>
                     </Form.Item>
                 </Form>
