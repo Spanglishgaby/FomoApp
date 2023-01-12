@@ -1,6 +1,6 @@
 import { Button, Modal, Form, Input, Alert } from 'antd';
 import { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Signup({ updateUser }) {
     const [openSignup, setOpenSignup] = useState(false)
@@ -10,7 +10,7 @@ function Signup({ updateUser }) {
         password: "",
         age:""
     })
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ function Signup({ updateUser }) {
             if (r.ok) {
                 r.json().then((user) => {
                     updateUser(user);
-                    history.push("/");
+                    navigate("/");
                 });
             } else {
                 r.json().then((json) => setErrors(json.errors));

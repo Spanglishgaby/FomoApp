@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Alert } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Signin = ({ updateUser }) => {
     const [open, setOpen] = useState(false);
@@ -11,8 +11,8 @@ const Signin = ({ updateUser }) => {
         email: "",
         password: ""
     })
-    console.log(loginInfo)
-    const history = useHistory();
+ 
+    const navigate = useNavigate();
 
     const showModal = () => {
     setOpen(true);
@@ -31,7 +31,7 @@ const Signin = ({ updateUser }) => {
             if (r.ok) {
                 r.json().then((user) => {
                     updateUser(user)
-                    history.push("/profile");
+                    navigate('/profile');
                 });
             } else {
                 r.json().then((json) => setErrors(json.errors));

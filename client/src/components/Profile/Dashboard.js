@@ -1,20 +1,24 @@
 import React from 'react'
 import { Layout, Menu} from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
-import { Switch, Route, Link ,useHistory } from "react-router-dom";
-import Explore from './Explore';
-import Profile from './Profile';
-import NewPost from './NewPost';
+import { SmileOutlined ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
+import { Link ,useNavigate, Route} from "react-router-dom";
 import logo from "./logo.png"
-const { Header, Content, Sider } = Layout;
-const Dashboard = ({ setUser, user }) => {
-  const history = useHistory();
+import EditProfile from './EditProfile';
+import Explore from './Explore';
 
-  const handleLogOut = () => {
+const { Header, Content, Sider } = Layout;
+
+const Dashboard = ({ setUser, user }) => {
+  const navigate = useNavigate();
+
+
+
+  const handleLogOut = () => {  
+
     fetch(`/logout`, {method: "DELETE"}).then((res) => {
       if (res.ok) {
         setUser(null);
-        history.push("/");         //redirect user to home
+        navigate("/");         //redirect user to home
       }
     });
   };
@@ -22,37 +26,43 @@ const Dashboard = ({ setUser, user }) => {
   return (
     <Layout className="box">
     <Header className="header" >
+    <Link to="/">
       <img className="logo2" src={logo} alt="Logo" />
+      </Link>
     </Header> 
     <Layout>
         <Sider width={300} id="sidebar">
             <Menu mode="inline">
                 <Menu.Item key={0} disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
-                <Menu.Item key={1} icon={<SmileOutlined />}>
+                <Menu.Item key={1} icon={<HomeOutlined  />}>
                     <Link to="/profile">
-                      Profile
+                      Home
                     </Link>
                 </Menu.Item>
-                <Menu.Item key={2} icon={<SmileOutlined />}>
-                    <Link to="/new">
+                <Menu.Item key={2} icon={<EditOutlined />}>
+                    <Link to={`/edit`}>
                         Edit Profile
                     </Link>
                 </Menu.Item>
-                <Menu.Item key={3} icon={<SmileOutlined />}>
-                    <Link to="/explore">
+                <Menu.Item key={3} icon={<CompassOutlined />}>
+                    <Link to={`/explore`}>
                         Explore
                     </Link>
                 </Menu.Item>
-                <Menu.Item key={4} icon={<SmileOutlined />}onClick={handleLogOut}>Logout</Menu.Item>
+                <Menu.Item key={4} icon={<LogoutOutlined />}onClick={handleLogOut}>
+                <Link to="/">
+                  Logout
+                  </Link>
+                </Menu.Item>
             </Menu>
         </Sider>
     <Layout>
         <Content id='content'>
-            <Switch>
-                <Route path="/profile" element={<Profile  />}></Route>
-                <Route path="/new" element={<NewPost  />}></Route>
-                <Route path="/explore" element={<Explore  />}></Route>
-            </Switch>
+          
+          <EditProfile  />
+          <Explore />
+             
+          
         </Content>
     </Layout>
     </Layout>

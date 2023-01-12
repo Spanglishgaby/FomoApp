@@ -38,8 +38,6 @@ const Header = ({updateUser}) => {
         </NavBarContainer>
       </Nav>
     <video src={hero} autoPlay loop muted />
-    
-   
 </div>
 
   );
