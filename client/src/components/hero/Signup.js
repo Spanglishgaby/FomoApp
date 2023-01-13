@@ -47,74 +47,69 @@ function Signup({ updateUser }) {
             })
         }
     return (
-        <>
-            <Button shape='round' className="BtnSignUp" onClick={handleOpen}>Register</Button>
-            <Modal 
-                title="User Registration" 
-                open={openSignup}
-                onCancel={handleClose}
-                onOk={handleClose}
-                footer={null}
+    <>
+        <Button shape='round' className="BtnSignUp" onClick={handleOpen}>Register</Button>
+        <Modal 
+            title="User Registration" 
+            open={openSignup}
+            onCancel={handleClose}
+            onOk={handleClose}
+            footer={null}
+        >
+            {errors?
+            <div>
+                {errors.map((err,index)=>{return (<Alert key={index} message={err} type="error" />)
+                })}
+                <p></p>
+            </div>:null}
+            <Form
+                name="registration"
+                labelCol={{
+                    span: 5,
+                }}
+                // wrapperCol={{offset: 5}}
+                autoComplete="off"
+                onFinish={handleSubmit}
             >
-                {/* {errors?
-                <div>
-                    <Alert message={errors.map((err)=>{return(<li>{err}</li>)})} type="error" />
-                </div>:null} */}
-
-                {errors?
-                <div>
-                    {errors.map((err,index)=>{return (<Alert key={index} message={err} type="error" />)
-                    })}
-                    <p></p>
-                </div>:null}
-                <Form
-                    name="registration"
-                    labelCol={{
-                        span: 5,
-                    }}
-                    // wrapperCol={{offset: 5}}
-                    autoComplete="off"
-                    onFinish={handleSubmit}
+                <Form.Item
+                    label="Name"
+                    name="name"
+                    rules={[{required: true, message: 'Please input your full name!'}]}
                 >
-                    <Form.Item
-                        label="Name"
-                        name="name"
-                        rules={[{required: true, message: 'Please input your full name!'}]}
-                    >
-                        <Input name="name" onChange={handleInputChange} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Email"
-                        name="email"
-                        rules={[{ required: true, message: 'Please input your email!'}]}
-                    >
-                        <Input name="email" onChange={handleInputChange} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Age"
-                        name="age"
-                        rules={[{ required: true,message: 'Please confirm your age!'}]}
-                    >
-                        <Input name="age" onChange={handleInputChange}  />
-                    </Form.Item>
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{required: true,message: 'Please input your password!'}]}
-                    >
-                        <Input.Password name="password" onChange={handleInputChange} />
-                    </Form.Item>
-                    
-                    <Form.Item
-                        wrapperCol={{offset: 5}}
-                    >
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                        Register
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Modal>
-        </>
+                    <Input name="name" onChange={handleInputChange} />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[{ required: true, message: 'Please input your email!'}]}
+                >
+                    <Input name="email" onChange={handleInputChange} />
+                </Form.Item>
+                <Form.Item
+                    label="Age"
+                    name="age"
+                    rules={[{ required: true,message: 'Please confirm your age!'}]}
+                >
+                    <Input name="age" onChange={handleInputChange}  />
+                </Form.Item>
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[{required: true,message: 'Please input your password!'}]}
+                >
+                    <Input.Password name="password" onChange={handleInputChange} />
+                </Form.Item>
+                
+                <Form.Item
+                    wrapperCol={{offset: 5}}
+                >
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                    Register
+                    </Button>
+                </Form.Item>
+            </Form>
+        </Modal>
+    </>
     )
 }
 

@@ -1,24 +1,20 @@
 import React from 'react';
-
-// import ReactPlayer from 'react-player';
 import hero from '../hero/hero.mp4';
-import {
-  Nav,
-  NavBarContainer,
-  NavLogo,
+import {Nav,NavBarContainer,NavLogo,
   // NavMenu,
   // NavItem,
   // NavLinks,
 } from "./NavElements";
 import logo from "./logo.png"
 import Signin from './Signin';
-import { Space } from 'antd';
 import Signup from './Signup';
+
+import { Space } from 'antd';
 
 const Header = ({updateUser}) => {
   return (
     <div className='main'>
-        <Nav>
+      <Nav>
         <NavBarContainer>
           <NavLogo to="/">
           <img className="logo" src={logo} alt="Logo" /> 
@@ -37,9 +33,8 @@ const Header = ({updateUser}) => {
           </Space>
         </NavBarContainer>
       </Nav>
-    <video src={hero} autoPlay loop muted />
-</div>
-
+      <video src={hero} autoPlay loop muted />
+    </div>
   );
 };
 
