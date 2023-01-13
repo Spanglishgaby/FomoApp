@@ -1,10 +1,9 @@
 import React from 'react'
 import { Layout, Menu} from 'antd';
 import { SmileOutlined ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
-import { Link ,useNavigate, Route} from "react-router-dom";
+import { Link ,useNavigate,Outlet } from "react-router-dom";
 import logo from "./logo.png"
-import EditProfile from './EditProfile';
-import Explore from './Explore';
+
 
 const { Header, Content, Sider } = Layout;
 
@@ -35,17 +34,17 @@ const Dashboard = ({ setUser, user }) => {
             <Menu mode="inline">
                 <Menu.Item key={0} disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
                 <Menu.Item key={1} icon={<HomeOutlined  />}>
-                    <Link to="/profile">
+                    <Link to="/dashboard/profile">
                       Home
                     </Link>
                 </Menu.Item>
                 <Menu.Item key={2} icon={<EditOutlined />}>
-                    <Link to={`/edit`}>
+                    <Link to={"/dashboard/edit"}>
                         Edit Profile
                     </Link>
                 </Menu.Item>
                 <Menu.Item key={3} icon={<CompassOutlined />}>
-                    <Link to={`/explore`}>
+                    <Link to={`/dashboard/explore`}>
                         Explore
                     </Link>
                 </Menu.Item>
@@ -58,11 +57,7 @@ const Dashboard = ({ setUser, user }) => {
         </Sider>
     <Layout>
         <Content id='content'>
-          
-          <EditProfile  />
-          <Explore />
-             
-          
+        <Outlet />
         </Content>
     </Layout>
     </Layout>
