@@ -11,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #EEE;
+  margin:0;
 }
 
 code {
@@ -18,11 +19,3 @@ code {
     monospace;
 }
 
-header {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	padding: 5px;
-	width: 1900px;
- 
-}

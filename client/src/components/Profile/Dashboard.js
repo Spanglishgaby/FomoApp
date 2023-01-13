@@ -40,20 +40,20 @@ const Dashboard = ({ setUser, user }) => {
     <Layout>
       <Sider width={300} id="sidebar">
         <Menu mode="inline">
-          <Menu.Item>
+          <Menu.Item key={0}>
             <Search  placeholder="input search text" style={{ width: 200 }} icon={suffix}/>
           </Menu.Item>
-          <Menu.Item  disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
-          <Menu.Item  icon={<HomeOutlined  />}>
+          <Menu.Item key={1}disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
+          <Menu.Item key={2} icon={<HomeOutlined  />}>
             <Link to="/dashboard/profile">Home</Link>
           </Menu.Item>
-          <Menu.Item  icon={<EditOutlined />}>
+          <Menu.Item key={3} icon={<EditOutlined />}>
             <Link to={"/dashboard/edit"}>Edit Profile</Link>
           </Menu.Item>
-          <Menu.Item  icon={<CompassOutlined />}>
+          <Menu.Item key={4}  icon={<CompassOutlined />}>
             <Link to={`/dashboard/explore`}>Explore</Link>
           </Menu.Item>
-          <Menu.Item  icon={<LogoutOutlined />}onClick={handleLogOut}>
+          <Menu.Item key={5} icon={<LogoutOutlined />}onClick={handleLogOut}>
             <Link to="/">Logout</Link>
           </Menu.Item>
         </Menu>
