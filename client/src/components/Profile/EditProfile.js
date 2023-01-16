@@ -13,6 +13,7 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
     const [age, setAge] = useState(user.age);
     const [location, setLocation] = useState(user.location);
     const [profile_photo, setPhoto] = useState(user.profile_photo);
+    const [bio, setBio] = useState(user.bio);
     let navigate = useNavigate();
 
 //Edit Profile
@@ -23,6 +24,7 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
     age: age || "",
     location: location || "",
     profile_photo: profile_photo || "",
+    bio: bio || "",
     };
 
     function handleSubmit(e) {
@@ -36,8 +38,9 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
         .then((data) => {
             setUser(data);
             // console.log(data);
+            <Alert message="Your Profile was updated!" type="success" showIcon />;
         });
-        <Alert message="Your Profile was updated!" type="success" />;
+        
     }
 //Delete Profile
         function handleDelete() {
@@ -53,7 +56,12 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
     return (
     <div className="userUpdate"> 
     {/* <UploadPhoto/> // component to upload a photo*/} 
+    <Alert message="Insert your password to update your profile" type="info" showIcon />
     <Form onSubmit={handleSubmit}>
+        <Form.Field>
+            <label>Bio</label>
+            <input type="text" placeholder=' Bio' value={updateUser.bio} onChange={(e) => setBio(e.target.value)} />
+        </Form.Field>
         <Form.Field>
             <label>Name</label>
             <input placeholder=' Name' value={updateUser.name} onChange={(e) => setName(e.target.value)} />
@@ -62,10 +70,7 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
             <label>Email</label>
             <input placeholder='Email' value={updateUser.email} onChange={(e) => setEmail(e.target.value)}  />
         </Form.Field>
-        <Form.Field>
-            <label>Password</label>
-            <input placeholder='Password' value={[updateUser.password]} onChange={(e) => setPassword(e.target.value)}  />
-        </Form.Field>
+        
         <Form.Field>
             <label>Age</label>
             <input placeholder='Age' value={updateUser.age} onChange={(e) => setAge(e.target.value)}   />
@@ -78,6 +83,11 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
             <label>Profile Photo</label>
             <input placeholder='Profile Photo' value={updateUser.profile_photo} onChange={(e) => setPhoto(e.target.value)}  />
         </Form.Field>
+        <Form.Field required={true}>
+            <label>Password</label>
+            <input placeholder='Password' value={[updateUser.password]} onChange={(e) => setPassword(e.target.value)}  />
+        </Form.Field>
+
         <Button type='submit'>Save</Button>
     </Form>
     <br></br>

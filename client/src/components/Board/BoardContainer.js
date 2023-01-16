@@ -1,8 +1,7 @@
-import {useState,useEffect} from 'react'
+import {useEffect} from 'react'
 import BoardCard from './BoardCard'
 
 const BoardContainer = ({user,boards,setBoards}) => {
-
 
   //get boards
       useEffect(() => {
@@ -10,9 +9,6 @@ const BoardContainer = ({user,boards,setBoards}) => {
         .then((r) => r.json())
         .then((boardsData) => setBoards(boardsData));
     }, [user]);
-
-   
-  
 
   return (
     <div className='BoardContainer'> 

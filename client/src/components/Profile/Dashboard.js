@@ -1,24 +1,14 @@
 import React from 'react'
-import { Layout, Menu,Input} from 'antd';
-import { AudioOutlined ,SmileOutlined ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
+import { Layout, Menu} from 'antd';
+import { SmileOutlined ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
 import { Link ,useNavigate,Outlet } from "react-router-dom";
 import logo from "./logo.png"
 
-
 const { Header, Content, Sider } = Layout;
-const { Search } = Input;
 
 const Dashboard = ({ setUser, user }) => {
+  
   const navigate = useNavigate();
-  const suffix = (
-    <AudioOutlined
-      style={{
-        fontSize: 16,
-        color: '#1890ff',
-      }}
-    />
-  );
-
 
   const handleLogOut = () => {  
     fetch(`/logout`, {method: "DELETE"}).then((res) => {
@@ -28,35 +18,32 @@ const Dashboard = ({ setUser, user }) => {
       }
     });
   };
-  //console.log('user')
+
   return (
   <Layout className="box">
     <Header className="header" >
       <Link to="/">
         <img className="logo2" src={logo} alt="Logo" />
-        </Link>
+      </Link>
         
     </Header> 
     <Layout>
       <Sider width={300} id="sidebar">
         <Menu mode="inline">
-          <Menu.Item key={0}>
-            <Search  placeholder="input search text" style={{ width: 200 }} icon={suffix}/>
-          </Menu.Item>
-          <Menu.Item key={1}disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
-          <Menu.Item key={2} icon={<HomeOutlined  />}>
+          <Menu.Item key={0}disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
+          <Menu.Item key={1} icon={<HomeOutlined  />}>
             <Link to="/dashboard/profile">Home</Link>
           </Menu.Item>
-          <Menu.Item key={3} icon={<EditOutlined />}>
+          <Menu.Item key={2} icon={<EditOutlined />}>
             <Link to={"/dashboard/edit"}>Edit Profile</Link>
           </Menu.Item>
-          <Menu.Item key={4}  icon={<CompassOutlined />}>
+          <Menu.Item key={3}  icon={<CompassOutlined />}>
             <Link to={`/dashboard/explore`}>Explore</Link>
           </Menu.Item>
-          <Menu.Item key={5}  icon={<CompassOutlined />}>
+          <Menu.Item key={4}  icon={<CompassOutlined />}>
             <Link to={`/dashboard/new`}>Add New Board</Link>
           </Menu.Item>
-          <Menu.Item danger key={6} icon={<LogoutOutlined />}onClick={handleLogOut}>
+          <Menu.Item danger key={5} icon={<LogoutOutlined />}onClick={handleLogOut}>
             <Link to="/">Logout</Link>
           </Menu.Item>
         </Menu>

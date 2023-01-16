@@ -1,11 +1,10 @@
 //import {useState,useEffect} from "react";
 import {useState} from "react";
-//import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Form, Input,message,Radio } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 
 
-const AddBoard = ({user,setUsers, users,boards, setBoards}) => {
+const AddBoard = ({user, setBoards}) => {
     const [openCreate, setOpenCreate] = useState(false)
     const [errors, setErrors] = useState([]);
     //const [value, setValue] = useState([]);
@@ -25,7 +24,7 @@ const AddBoard = ({user,setUsers, users,boards, setBoards}) => {
         title: title,
         color: color,
     }
-console.log(newBoard)
+
     // useEffect(() => {
     //     fetch("/users")
     //         .then((r) => r.json())
@@ -41,7 +40,6 @@ console.log(newBoard)
     // }
 
     function handleSubmit() {
-        // e.preventDefault()
         fetch("/boards", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -52,6 +50,7 @@ console.log(newBoard)
                     setBoards((currentboard) => [...currentboard, newboard]);
                     handleSubmit2(newboard.id)
                     success()
+                    setOpenCreate(false)
                 })
             } else{
                 r.json().then((json)=>setErrors([...errors, json.errors]))
@@ -62,7 +61,7 @@ console.log(newBoard)
     const success = () => {
         message.success('New Board Created!');
     };
- 
+
     function handleSubmit2(board_id) {
         
         // const users = value.map(v=>{return(v.label.split(' ')[0])})
@@ -84,14 +83,12 @@ console.log(newBoard)
                     r.json().then((json)=>setErrors([...errors, json.errors]))
                 }
             })
-       // })
         form.resetFields()
     }
 
-  return (
+    return (
     <div className="AddBoard">
         <h3><PlusCircleOutlined onClick={handleOpen}/>Add a Board</h3>
-        {/* //<Button shape='round' className="BtnSignUp" onClick={handleOpen}>Register</Button> */}
         <Modal 
             title="Create a new Board" 
             open={openCreate}
@@ -107,7 +104,6 @@ console.log(newBoard)
             >
                 <Form.Item
                     label="Board Title"
-                    //name="title"
                     rules={[{required: true, message: 'Please input the board title'}]}
                 >
                     <Input onChange={(e) => setTitle(e.target.value)} size="large"/>
@@ -129,27 +125,24 @@ console.log(newBoard)
                         /> */}
                 {/* </Form.Item> */}
                 <Form.Item label="Board Color">
-                <Radio.Group
-                    onChange={(e) => setColor(e.target.value)}
-                    style={{ marginTop: 10 }}
-                >
-                    <Radio value="#F8EDE3" style={{ backgroundColor:'#F8EDE3', padding:10 }}></Radio>
-                    <Radio value="#F5F5DC" style={{ backgroundColor:'#F5F5DC', padding:10 }}></Radio>
-                    <Radio value="#CEEDC7" style={{ backgroundColor:'#CEEDC7', padding:10 }}></Radio>
-                    <Radio value="#FEFCF3" style={{ backgroundColor:'#FEFCF3', padding:10 }}></Radio>
-                    <Radio value="#FFE3E1" style={{ backgroundColor:'#FFE3E1', padding:10 }}></Radio>
-
-                </Radio.Group>
+                    <Radio.Group
+                        onChange={(e) => setColor(e.target.value)}
+                        style={{ marginTop: 10 }}
+                    >
+                        <Radio value="#F8EDE3" style={{ backgroundColor:'#F8EDE3', padding:10 }}></Radio>
+                        <Radio value="#F5F5DC" style={{ backgroundColor:'#F5F5DC', padding:10 }}></Radio>
+                        <Radio value="#CEEDC7" style={{ backgroundColor:'#CEEDC7', padding:10 }}></Radio>
+                        <Radio value="#FEFCF3" style={{ backgroundColor:'#FEFCF3', padding:10 }}></Radio>
+                        <Radio value="#FFE3E1" style={{ backgroundColor:'#FFE3E1', padding:10 }}></Radio>
+                    </Radio.Group>
                 </Form.Item>
                 <Button htmlType="submit" size="large">
                     Create
                 </Button>
             </Form>
         </Modal>
-
-
     </div>
-  )
+    )
 }
 
 export default AddBoard

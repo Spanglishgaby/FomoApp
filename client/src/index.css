@@ -29,7 +29,7 @@ video {
 }
 
 .login-form-button {
-  width: 100%;
+  width: 80%;
 }
 .BtnSignIn{
   border-radius: 50px;
@@ -140,4 +140,23 @@ padding-right: 10px;
 }
 .card{
   border-color: #aeaeae;
+}
+.userUpdate{
+  margin-left: 300px;
+align-content:center;
+width: 700px;
+}
+.postContainer{
+  display:flex;
+  position: relative;
+  top:40px;
+  left: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: #f3f3f3;
+}
+.postCardEx{
+  padding-left: 10px;
+  padding-right: 10px;
 }

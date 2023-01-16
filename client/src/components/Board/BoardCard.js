@@ -77,9 +77,7 @@ function handleDelete() {
             <label>Title</label>
             <input value={updateBoard.title} onChange={(e) => setTitle(e.target.value)} />
         </Form.Field>
-        {/* <Link to="/dashboard/profile"> */}
         <Button type='submit'>Update</Button>
-        {/* </Link> */}
         </Form>
     </Modal>
     </div>

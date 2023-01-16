@@ -52,6 +52,7 @@ return (
         onCancel={handleCancel}
         onOk={handleCancel}
         footer={null}
+        confirmLoading={isLoading}
     >
         {errors?
         <div>
@@ -62,24 +63,20 @@ return (
         <Form
             name="login"
             className="login-form"
-            // autoComplete="off"
-            // initialValues={{ remember: true }} checkbox remember me
             onFinish={handleSubmit}
             wrapperCol={{offset: 5}}
         >
             <Form.Item
-                // label="Email"
                 name="email"
                 rules={[{required: true, message: 'Please input your email!'}]}
             >
-                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" name="email" onChange={handleInputChange} />
+                <Input prefix={<UserOutlined/>} placeholder="Email" name="email" onChange={handleInputChange} />
             </Form.Item>
             <Form.Item
-                // label="Password"
                 name="password"
                 rules={[{required: true,message: 'Please input your password!'}]}
             >
-                <Input.Password  prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password" name="password" onChange={handleInputChange} />
+                <Input.Password  prefix={<LockOutlined />} placeholder="Password" name="password" onChange={handleInputChange} />
             </Form.Item>
             <Form.Item
                 wrapperCol={{offset: 5}}

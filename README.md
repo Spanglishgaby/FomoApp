@@ -1,24 +1,78 @@
 # README
+App
+* Nested Route - Done
+* Authentication - Done
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+*Home => Login => Signup
+- Add Header/ SignIn - SignOut Modals - Done
+- Add Creator information
+- Add Social media links (GitRepo - LinkedIn)
 
-Things you may want to cover:
+* Login 
+- Alert error messages- Done
+- Navigate to Profile - Done
+- Create a new session - Done
 
-* Ruby version
+*Dashboard => Logout
+- LogOut Delete Sessions - Done
+- Sidebar / Nested Routes - Done
+- Add Welcome User Text - Done
+- Add Logo Link to Home - Done
 
-* System dependencies
+* Logout 
+- Create new user - Done
+- Add Password confirmation - Done
+- Add Password validation min 10 digits - Done
+- Add validation Email uniqueness - Done
+- Add success message - Done
+- Add error message - Done
 
-* Configuration
+*Profile => AddBoard => BoardContainer => BoardCard
+- User info and profile photo - Done
+- AddBoard Modal - done
+- Style Container center - Done
 
-* Database creation
+*AddBoard
+- Create Board (title - Color) - Done
+- UserBoard (user_id, board_id) - Done (Assigned to the current user)
+- Create success message - Done
+- Render user , create Select multiple user , render userBoard same Board_id and different user_id
 
-* Database initialization
+*BoardContainer
+- Get Current User Boards - Done
+- Pass props to BoardCard - Done
+- CSS Position and Display - Done
 
-* How to run the test suite
+*BoardCard => PostBoardContainer
+- Add Icons onClick Delete/Update - Done
+- Add Modal Form(Update) - Done
+- CSS Grid spacing - Done
+- Add RadioButton  to update board color
+- Fix Update Fetch (add index)
+- Fix Delete Fetch (add index)
+- OnClick Card send you to the Post Container - Done
+- Post container show post per PostTag
 
-* Services (job queues, cache servers, search engines, etc.)
+*Explore => PostCard
+- Get all posts - Done
+- Send props to PostCard - Done
 
-* Deployment instructions
+*PostCardExplore
+- Show all the posts(images) - Done
+- Create a conditional to show videos and images
+- Add search per Tag or Tag buttons(filter)
+- Show post Description, Likes and Tags
 
-* ...
+*PostBoardContainer => PostBoardCard
+- Show Posts per Board_id - CurrentUser
+- Add Icon onClick Open Create New Post 
+- Add Form on Modal Create new Post
+
+*PostBoardCard
+- Add onClick Delete/ Update icons
+- Add Modal Form(Update)
+- CSS Grid spacing
+- Fetch Update/Delete
+- Like icon ++1
+- Show post Description, Likes and Tags
+

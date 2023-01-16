@@ -2,8 +2,7 @@ class PostsController < ApplicationController
     skip_before_action :authorized_user, only: [:index,:show]
 
     def index
-        posts = current_user.posts
-        render json: posts
+        render json: Post.all, status: :ok
     end
 
     def show 

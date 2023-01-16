@@ -1,6 +1,5 @@
-import { Button, Modal, Form, Input, Alert } from 'antd';
+import { Button, Modal, Form, Input, Alert,message } from 'antd';
 import { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
 
 function Signup({ updateUser }) {
     const [openSignup, setOpenSignup] = useState(false)
@@ -11,10 +10,9 @@ function Signup({ updateUser }) {
         age:"",
         pass_confirmation:""
     })
-    //const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+   
     function handleOpen() {
         setOpenSignup(true)
     }
@@ -22,26 +20,26 @@ function Signup({ updateUser }) {
         setOpenSignup(false)
     }
     function handleSubmit() {
-        // e.preventDefault()
-        console.log("RegisterOK")
         setErrors([]);
-        setIsLoading(true);
         fetch("/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newUser),
         }).then((r) => {
-            setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => {
                     updateUser(user);
                     setOpenSignup(false);
+                    success()
                 });
             } else {
                 r.json().then((json) => setErrors(json.errors));
             }
         });
     }
+    const success = () => {
+        message.success('Welcome to FOMO! Now LogIn!');
+    };
         function handleInputChange(e) {
             setNewUser({
                 ...newUser, [e.target.name]:e.target.value
@@ -68,7 +66,6 @@ function Signup({ updateUser }) {
                 labelCol={{
                     span: 10,
                 }}
-                // wrapperCol={{offset: 5}}
                 autoComplete="off"
                 onFinish={handleSubmit}
             >
