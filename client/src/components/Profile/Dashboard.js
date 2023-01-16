@@ -53,7 +53,10 @@ const Dashboard = ({ setUser, user }) => {
           <Menu.Item key={4}  icon={<CompassOutlined />}>
             <Link to={`/dashboard/explore`}>Explore</Link>
           </Menu.Item>
-          <Menu.Item key={5} icon={<LogoutOutlined />}onClick={handleLogOut}>
+          <Menu.Item key={5}  icon={<CompassOutlined />}>
+            <Link to={`/dashboard/new`}>Add New Board</Link>
+          </Menu.Item>
+          <Menu.Item danger key={6} icon={<LogoutOutlined />}onClick={handleLogOut}>
             <Link to="/">Logout</Link>
           </Menu.Item>
         </Menu>

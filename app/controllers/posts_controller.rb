@@ -1,36 +1,39 @@
 class PostsController < ApplicationController
     skip_before_action :authorized_user, only: [:index,:show]
+
     def index
-        render json: Post.all, status: :ok
+        posts = current_user.posts
+        render json: posts
     end
 
-    def show
-        render json: Post.find(params[:id]), status: :ok
-    end
-
-    # def show_comments
-    #     render json: Post.find(params[:id]).comments
-    # end
-
-    def create
-        new_post = Post.create!(post_params)
-        render json: new_post, status: :created
-    end
-
-    def update
+    def show 
         post = Post.find(params[:id])
-        post.update(post_params)
         render json: post
     end
 
-    def destroy
-        post = Post.find(params[:id])
-        post.destroy
-        head :no_content
+    def create 
+        post = Post.create(post_params)
+        if post.valid?
+            render json: post, status: :created 
+        else 
+            render json: post.errors.full_messages, status: :unprocessable_entity 
+        end 
     end
 
-    private
-    def post_params
-        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id)
+    def destroy 
+        post = post.find_by(id: params[:id])
+        if post 
+            post.destroy
+            head :no_content 
+        else  
+            render json: "post does not exist", status: :not_found 
+        end
     end
+
+    private 
+
+    def post_params 
+        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id, :board_id)
+    end
+
 end

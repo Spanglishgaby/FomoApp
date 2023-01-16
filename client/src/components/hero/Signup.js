@@ -1,6 +1,6 @@
 import { Button, Modal, Form, Input, Alert } from 'antd';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 function Signup({ updateUser }) {
     const [openSignup, setOpenSignup] = useState(false)
@@ -8,13 +8,14 @@ function Signup({ updateUser }) {
         name: "",
         email: "",
         password: "",
-        age:""
+        age:"",
+        pass_confirmation:""
     })
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    function handleOpen({updateUser}) {
+    function handleOpen() {
         setOpenSignup(true)
     }
     function handleClose() {
@@ -34,7 +35,7 @@ function Signup({ updateUser }) {
             if (r.ok) {
                 r.json().then((user) => {
                     updateUser(user);
-                    navigate("/");
+                    setOpenSignup(false);
                 });
             } else {
                 r.json().then((json) => setErrors(json.errors));
@@ -65,7 +66,7 @@ function Signup({ updateUser }) {
             <Form
                 name="registration"
                 labelCol={{
-                    span: 5,
+                    span: 10,
                 }}
                 // wrapperCol={{offset: 5}}
                 autoComplete="off"
@@ -99,7 +100,13 @@ function Signup({ updateUser }) {
                 >
                     <Input.Password name="password" onChange={handleInputChange} />
                 </Form.Item>
-                
+                <Form.Item
+                    label="Password Confirmation"
+                    name="pass_confirmation"
+                    rules={[{required: true,message: 'Please confirm your password!'}]}
+                >
+                    <Input.Password name="pass_confirmation" onChange={handleInputChange} />
+                </Form.Item>
                 <Form.Item
                     wrapperCol={{offset: 5}}
                 >

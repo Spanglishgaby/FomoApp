@@ -87,7 +87,7 @@ return (
                 <Button type="primary" htmlType="submit" className="login-form-button">
                 Submit
                 </Button>
-                Or <a href="/">register now!</a>
+                
             </Form.Item>
         </Form>
     </Modal>
