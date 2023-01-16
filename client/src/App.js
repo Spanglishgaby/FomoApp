@@ -14,6 +14,7 @@ import PostContainer from "./Post/PostContainer";
 function App() {
   const [user, setUser] = useState({});
   const [ users, setUsers] = useState( [] )
+  const [boards, setBoards] = useState([])
 
   const updateUser = (user) => setUser(user);
 
@@ -35,7 +36,7 @@ console.log(user)
   <Routes>
     <Route path="/" element={<Home  updateUser={updateUser} />}/>
     <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />}>
-      <Route path="profile" element={<Profile user={user} setUser={setUser}/>}/>
+      <Route path="profile" element={<Profile user={user} setUser={setUser} boards={boards} setBoards={setBoards}/>}/>
       <Route path="edit" element={<EditProfile setUsers={setUsers} users={users} user={user} setUser={setUser}/>}/>
       <Route path="explore" element={<Explore />}/>
       <Route path="new" element={<NewBoard user={user} setUsers={setUsers} users={users}/>}/>

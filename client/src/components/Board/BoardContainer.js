@@ -1,8 +1,8 @@
 import {useState,useEffect} from 'react'
 import BoardCard from './BoardCard'
 
-const BoardContainer = ({user}) => {
-  const [boards, setBoards] = useState([])
+const BoardContainer = ({user,boards,setBoards}) => {
+
 
   //get boards
       useEffect(() => {

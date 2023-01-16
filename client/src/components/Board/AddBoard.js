@@ -5,7 +5,7 @@ import { Button, Modal, Form, Input,message,Radio } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 
 
-const AddBoard = ({user,setUsers, users}) => {
+const AddBoard = ({user,setUsers, users,boards, setBoards}) => {
     const [openCreate, setOpenCreate] = useState(false)
     const [errors, setErrors] = useState([]);
     //const [value, setValue] = useState([]);
@@ -40,8 +40,8 @@ console.log(newBoard)
     //         )
     // }
 
-    function handleSubmit(e) {
-        e.preventDefault()
+    function handleSubmit() {
+        // e.preventDefault()
         fetch("/boards", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -49,6 +49,7 @@ console.log(newBoard)
         }).then((r)=>{
             if (r.ok) {
                 r.json().then(newboard=>{
+                    setBoards((currentboard) => [...currentboard, newboard]);
                     handleSubmit2(newboard.id)
                     success()
                 })
