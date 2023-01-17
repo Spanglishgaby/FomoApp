@@ -19,6 +19,16 @@ class PostsController < ApplicationController
         end 
     end
 
+    def update
+        post = Post.find_by(id: params[:id])
+        if post 
+            post.update(post_params)
+            render json:post
+        else  
+            render json: { errors: ["post does not exist"]}, status: :not_found 
+        end
+    end
+
     def destroy 
         post = post.find_by(id: params[:id])
         if post 
@@ -32,7 +42,7 @@ class PostsController < ApplicationController
     private 
 
     def post_params 
-        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id, :board_id)
+        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id, :post_id)
     end
 
 end

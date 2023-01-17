@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState({});
   const [ users, setUsers] = useState( [] )
   const [boards, setBoards] = useState([])
+  const [posts, setPosts] = useState([])
 
   const updateUser = (user) => setUser(user);
 
@@ -25,6 +26,14 @@ function App() {
     });
   }, []);
 
+  
+  useEffect(() => {
+    fetch("/posts")
+      .then((r) => r.json())
+      .then((postsData) => 
+      setPosts(postsData)
+      );
+  }, []);
 
 return (
   <Routes>
@@ -32,9 +41,9 @@ return (
     <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />}>
       <Route path="profile" element={<Profile user={user} boards={boards} setBoards={setBoards}/>}/>
       <Route path="edit" element={<EditProfile setUsers={setUsers} users={users} user={user} setUser={setUser}/>}/>
-      <Route path="explore" element={<Explore user={user} />}/>
+      <Route path="explore" element={<Explore user={user} posts={posts}/>}/>
       <Route path="new" element={<NewBoard user={user} setUsers={setUsers} users={users}/>}/>
-      <Route path="board/:id" element={<PostContainer/>}/>
+      <Route path="board/:id" element={<PostContainer user={user} boards={boards} setPosts={setPosts}/>}/>
     </Route>
   </Routes>
 )

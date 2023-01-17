@@ -47,9 +47,9 @@ App
 - Add Icons onClick Delete/Update - Done
 - Add Modal Form(Update) - Done
 - CSS Grid spacing - Done
-- Add RadioButton  to update board color
-- Fix Update Fetch (add index)
-- Fix Delete Fetch (add index)
+- Add RadioButton  to update board color - Done
+- Fix Update Fetch (add index) - Done
+- Fix Delete Fetch (add index) - Done
 - OnClick Card send you to the Post Container - Done
 - Post container show post per PostTag
 

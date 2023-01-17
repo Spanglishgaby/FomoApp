@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   post '/signup', to: "users#create"
   get "/me", to: "users#show"
   delete 'dashboard/boards/:id', to: 'boards#destroy'
+  get "boardposts/:id", to: "boards#show_posts"
+  delete 'dashboard/board/posts/:id', to: 'posts#destroy'
+  delete 'dashboard/users/:id', to: 'users#destroy'
 
 end

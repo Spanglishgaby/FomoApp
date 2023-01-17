@@ -124,6 +124,12 @@ video {
   top: 140px;
   right: 200px;
 }
+.AddPost{
+  font-size: 22px;
+  position: relative;
+  top: 10px;
+  left: 1110px;
+}
 .BoardContainer{
   display:flex;
   position: absolute;

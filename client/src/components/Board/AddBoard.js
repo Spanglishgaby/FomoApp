@@ -106,7 +106,7 @@ const AddBoard = ({user, setBoards}) => {
                     label="Board Title"
                     rules={[{required: true, message: 'Please input the board title'}]}
                 >
-                    <Input onChange={(e) => setTitle(e.target.value)} size="large"/>
+                    <Input onChange={(e) => setTitle(e.target.value)} />
                 </Form.Item>
                 {/* <Form.Item
                     label="Friends"

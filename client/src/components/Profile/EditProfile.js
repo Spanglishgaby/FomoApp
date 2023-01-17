@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-import { Alert  } from 'antd';
+import { message, Alert } from 'antd';
 import { Button, Form } from 'semantic-ui-react'
 import { useState } from 'react';
 //import UploadPhoto from './UploadPhoto';
@@ -37,21 +37,25 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
         .then((r) => r.json())
         .then((data) => {
             setUser(data);
-            // console.log(data);
-            <Alert message="Your Profile was updated!" type="success" showIcon />;
+            success()
         });
         
     }
+    const success = () => {
+    message.success('Your Profile was updated!');
+    };
 //Delete Profile
-        function handleDelete() {
-            fetch(`users/${user.id}`, {
-            method: "DELETE"
-            })
-            .then(()=>{
-            setUser(null)
-            navigate('/')
-            })
-        }
+    const handleDelete = (id) =>
+    setUsers((current) => current.filter((p) => p.id !== id));
+
+    function handleSubmitDelete() {
+    fetch(`users/${user.id}`, {
+    method: "DELETE"
+    }).then(()=>{
+    handleDelete(user.id)
+    navigate("/")
+    })
+    }
 
     return (
     <div className="userUpdate"> 
@@ -91,7 +95,7 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
         <Button type='submit'>Save</Button>
     </Form>
     <br></br>
-    <Button type='submit' onClick={handleDelete}>Delete Account</Button>
+    <Button type='submit' onClick={handleSubmitDelete}>Delete Account</Button>
     </div>
     )
 }

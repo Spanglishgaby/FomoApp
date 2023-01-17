@@ -10,6 +10,10 @@ class BoardsController < ApplicationController
         render json: board
     end
 
+    def show_posts
+        render json:  Board.find(params[:id]).posts
+    end
+
     def create 
         board = Board.create(board_params)
         if board.valid?

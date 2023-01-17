@@ -1,5 +1,4 @@
-import {useEffect,useState} from 'react'
-
+import React from 'react'
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import PostCard from './PostCard';
@@ -9,16 +8,9 @@ const { Search } = Input;
 const suffix = (
   <AudioOutlined style={{fontSize: 16, color: '#1890ff'}}/>);
 
-const Explore = (user) => {
+const Explore = ({posts}) => {
 
-  const [posts, setPosts] = useState([])
-  useEffect(() => {
-    fetch("/posts")
-      .then((r) => r.json())
-      .then((postsData) => 
-      setPosts(postsData)
-      );
-  }, []);
+  
 
   let postArray = posts && posts.map((post) => (
     <PostCard
