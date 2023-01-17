@@ -12,7 +12,7 @@ const AddBoard = ({user, setBoards}) => {
     const [color, setColor] = useState("")
     const [form] = Form.useForm();
     
-    console.log(user)
+   // console.log(user)
     function handleOpen() {
         setOpenCreate(true)
     }
