@@ -64,14 +64,15 @@ App
 - Show post Description, Likes and Tags
 
 *PostBoardContainer => PostBoardCard
-- Show Posts per Board_id - CurrentUser
-- Add Icon onClick Open Create New Post 
-- Add Form on Modal Create new Post
+- Show Posts per Board_id - Done
+- Add Icon onClick Open Create New Post -Done
+- Add Form on Modal Create new Post -Done
+- Fetch Create Post
 
 *PostBoardCard
-- Add onClick Delete/ Update icons
-- Add Modal Form(Update)
-- CSS Grid spacing
+- Add onClick Delete/ Update icons - Done
+- Add Modal Form(Update) - Done 
+- CSS Grid spacing - Done
 - Fetch Update/Delete
 - Like icon ++1
 - Show post Description, Likes and Tags
