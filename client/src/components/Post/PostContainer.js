@@ -38,7 +38,7 @@ const PostContainer = ({user,posts,setPosts}) => {
     user_id:user.id,
     board_id:boardID,
 }
-console.log(newPost)
+//console.log(newPost)
   function handleSubmit() {
     fetch("/posts", {
         method: "POST",

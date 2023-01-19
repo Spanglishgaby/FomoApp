@@ -13,7 +13,7 @@ const AddBoard = ({user,setBoards}) => {
     const [color, setColor] = useState("")
     const [form] = Form.useForm();
     
-   // console.log(user)
+   // Open and Close Modal
     function handleOpen() {
         setOpenCreate(true)
     }
@@ -25,7 +25,7 @@ const AddBoard = ({user,setBoards}) => {
         title: title,
         color: color,
     }
-
+//Get users to show as options in Select 
     async function fetchUserList() {
         return fetch("/users")
             .then(r=>r.json())

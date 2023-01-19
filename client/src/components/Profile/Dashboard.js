@@ -6,10 +6,10 @@ import logo from "./logo.png"
 
 const { Header, Content, Sider } = Layout;
 
-const Dashboard = ({ setUser, user }) => {
+const Dashboard = ({setUser, user}) => {
   
   const navigate = useNavigate();
-
+// LogOut Delete Sessions 
   const handleLogOut = () => {  
     fetch(`/logout`, {method: "DELETE"}).then((res) => {
       if (res.ok) {
@@ -47,7 +47,8 @@ const Dashboard = ({ setUser, user }) => {
       </Sider>
       <Layout>
         <Content id='content'>
-          <Outlet />
+          {/* Nested Routes */}
+          <Outlet /> 
         </Content>
       </Layout>
     </Layout>

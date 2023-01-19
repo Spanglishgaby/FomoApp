@@ -14,7 +14,7 @@ function App() {
   const [ users, setUsers] = useState( [] )
   const [boards, setBoards] = useState([])
   const [posts, setPosts] = useState([])
-  const [errors, setErrors] = useState(false)
+
 
   const updateUser = (user) => setUser(user);
 
@@ -31,15 +31,9 @@ function App() {
 
   const fetchPost =() =>{
     fetch("/posts")
-    .then(res => {
-      if(res.ok){
-        res.json().then(setPosts)
-      }else {
-        res.json().then(data => setErrors(data.error))
-      }
-    })
-  }
-
+    .then(res => res.json())
+    .then(setPosts)
+    }
 
   useEffect( () =>{
     fetch ("/users/:id")

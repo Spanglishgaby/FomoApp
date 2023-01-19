@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React from 'react'
 import { Comment } from 'semantic-ui-react'
 
 const CommentCard = ({comment,currentuser, setAllComments}) => {
@@ -31,10 +31,9 @@ const CommentCard = ({comment,currentuser, setAllComments}) => {
                     <Comment.Action onClick= {handleDelete}>Delete</Comment.Action>
                 </Comment.Actions>
                 ) : <></>}
-            
         </Comment.Content>
     </Comment>
-    
+    <br></br>
     </div>
   )
 }

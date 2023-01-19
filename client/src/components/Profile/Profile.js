@@ -9,6 +9,7 @@ const Profile = ({user,boards,setBoards}) => {
     <Image
       className='profileName'
       width={200}
+      height={280}
       src={user.profile_photo}
     />
     <Space className='profile' direction="vertical" size="middle" style={{ display: 'flex' }}>
@@ -19,7 +20,9 @@ const Profile = ({user,boards,setBoards}) => {
         <p>{user.bio}</p>
       </Card>
     </Space>
+    {/* Add New Board Modal */}
     <AddBoard user={user}  setBoards={setBoards}/>
+     {/* Board Container - show all the user boards */}
     <div className='profileContainer'>
     <BoardContainer user={user} boards={boards} setBoards={setBoards}/>
     </div>
