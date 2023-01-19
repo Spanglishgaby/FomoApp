@@ -10,6 +10,10 @@ class PostsController < ApplicationController
         render json: post
     end
 
+    def show_comments
+        render json:  Post.find(params[:id]).comments
+    end
+
     def create 
         post = Post.create(post_params)
         if post.valid?

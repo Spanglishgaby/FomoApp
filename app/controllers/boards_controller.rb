@@ -14,6 +14,10 @@ class BoardsController < ApplicationController
         render json:  Board.find(params[:id]).posts
     end
 
+    def show_users
+        render json:  Board.find(params[:id]).users
+    end
+
     def create 
         board = Board.create(board_params)
         if board.valid?

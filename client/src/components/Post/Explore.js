@@ -8,14 +8,14 @@ const { Search } = Input;
 const suffix = (
   <AudioOutlined style={{fontSize: 16, color: '#1890ff'}}/>);
 
-const Explore = ({posts}) => {
-
-  
+const Explore = ({posts, user, setPosts,users}) => {
 
   let postArray = posts && posts.map((post) => (
     <PostCard
       key={post.id}
       post={post}
+      user={user}
+      setPosts={setPosts}
     />
   ));
   return (

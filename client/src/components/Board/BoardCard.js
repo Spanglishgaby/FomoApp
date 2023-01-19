@@ -1,7 +1,7 @@
-import {useState} from 'react';
-import { Link  } from 'react-router-dom';
-import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { Card, Col, Row, Modal, message, Radio, Button, Form,Input } from 'antd';
+import {useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { EditOutlined, DeleteOutlined,UserOutlined,UsergroupDeleteOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Modal, message, Radio, Button, Form,Input,Space ,Avatar,Popover } from 'antd';
 //import { Button, Form } from 'semantic-ui-react'
 const { Meta } = Card;
 
@@ -9,6 +9,7 @@ const BoardCard = ({board,boards,setBoards}) => {
 const [openCreate, setOpenCreate] = useState(false)
 const [title, setTitle] = useState(board.title)
 const [color, setColor] = useState(board.color)
+const [boardUser, setBoardUser ] = useState ( [] )
 
 function handleOpen() {
     setOpenCreate(true)
@@ -16,7 +17,22 @@ function handleOpen() {
 function handleClose() {
     setOpenCreate(false)
 }
+useEffect( () =>{
+    fetch (`/boardusers/${board.id}`)
+    .then ( r => r.json() )
+    .then ((data) =>  
+    setBoardUser(data)
+    )
+    },[])
 
+    const participants = (
+        
+        <Space direction="vertical">
+            {boardUser.map((user)=>{
+                return (<Space key={user.id}><Avatar icon={<UserOutlined />} />{user.name}</Space>)
+            })}
+        </Space>
+    )
 //Edit Profile
 const updateBoard = {
     title: title || "",
@@ -71,6 +87,9 @@ function handleSubmitDelete() {
         actions={[
         <DeleteOutlined key="delete"  value={board.id} onClick={handleSubmitDelete}/>,
         <EditOutlined key="edit"  onClick={handleOpen}/>,
+        <Popover placement="bottomLeft" content={participants} trigger="click">
+         <UsergroupDeleteOutlined />
+            </Popover>
         ]}
         >
             <Link to={`/dashboard/board/${board.id}`} >
@@ -78,6 +97,7 @@ function handleSubmitDelete() {
             title={board.title}
             />
             </Link>
+            
         </Card>
     </Col>
     </Row>

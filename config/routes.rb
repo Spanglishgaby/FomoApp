@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   delete 'dashboard/boards/:id', to: 'boards#destroy'
   get "boardposts/:id", to: "boards#show_posts"
+  get "boardusers/:id", to: "boards#show_users"
+  get "postcomments/:id", to: "posts#show_comments"
   delete 'dashboard/board/posts/:id', to: 'posts#destroy'
   delete 'dashboard/users/:id', to: 'users#destroy'
 

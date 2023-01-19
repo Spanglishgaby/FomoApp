@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import CreatePost from "./CreatePost";
 
 import PostCardBoard from "./PostCardBoard";
-const PostContainer = ({user,boards,setPosts}) => {
+const PostContainer = ({user,setPosts}) => {
   const [ postsUser, setPostUser ] = useState ( [] )
   const { id } = useParams();
 

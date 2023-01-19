@@ -4,19 +4,12 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 
 const CreatePost = ({setPosts,board_id,user}) => {
     const [openCreate, setOpenCreate] = useState(false)
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
     const [url, setUrl] = useState("")
     const [post_content, setContent] = useState("")
     const [post_tag, setTag] = useState("")
     const [form] = Form.useForm();
     let boardID = parseInt(board_id)
-    const newPost = {
-        url: url,
-        post_content: post_content,
-        post_tag:post_tag,
-        user_id:user.id,
-        board_id:boardID,
-    }
 
     function handleOpen() {
         setOpenCreate(true)
@@ -24,25 +17,31 @@ const CreatePost = ({setPosts,board_id,user}) => {
     function handleClose() {
         setOpenCreate(false)
     }
+    const newPost = {
+        url: url,
+        post_content: post_content,
+        post_tag:post_tag,
+        user_id:user.id,
+        board_id:boardID,
+    }
+    console.log(newPost)
     
     function handleSubmit() {
         fetch("/posts", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newPost),
-        }).then((r)=>{
-            if (r.ok) {
-                r.json().then(newPost=>{
+        })
+        .then(r => r.json())
+        .then(newPost=>{
                     setPosts((currentPost) => [...currentPost, newPost]);
                     success()
                     setOpenCreate(false)
                 })
-            } else{
-                r.json().then((json)=>setErrors([...errors, json.errors]))
-            }
-        })
-        form.resetFields()
-    }
+                form.resetFields()
+        }
+        
+    
     const success = () => {
         message.success('New Post Created!');
     };

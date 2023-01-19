@@ -3,7 +3,7 @@ import { Image,Space,Card } from 'antd';
 import AddBoard from '../Board/AddBoard';
 import BoardContainer from '../Board/BoardContainer';
 
-const Profile = ({user,boards,setBoards}) => {
+const Profile = ({user,boards,setBoards,users}) => {
   return (
   <div className='profile'>
     <Image
@@ -19,9 +19,9 @@ const Profile = ({user,boards,setBoards}) => {
         <p>{user.bio}</p>
       </Card>
     </Space>
-    <AddBoard user={user} setBoards={setBoards}/>
+    <AddBoard user={user}  setBoards={setBoards}/>
     <div className='profileContainer'>
-      <BoardContainer user={user} boards={boards} setBoards={setBoards}/>
+      <BoardContainer user={user}  boards={boards} setBoards={setBoards}/>
     </div>
   </div>
   )

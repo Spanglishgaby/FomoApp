@@ -67,13 +67,13 @@ function handleSubmitDelete() {
   return (
   <div className='postCardEx'>
     <Card style={{ width: 300 }}
-        cover={ <img src={post.url} />}
+        cover={ <img alt="example" src={post.url} />}
         actions={[
           <DeleteOutlined key="delete"  value={post.id} onClick={handleSubmitDelete}/>,
           <EditOutlined key="edit"  onClick={handleOpen}/>,
           ]}
     >
-      <Meta description={post.content}/>
+      <Meta description={post.post_content}/>
     </Card>
   <br></br>
   <Modal 

@@ -2,12 +2,13 @@
 import {useState} from "react";
 import { Button, Modal, Form, Input,message,Radio } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import DebounceSelect from "./DebounceSelect";
 
 
-const AddBoard = ({user, setBoards}) => {
+const AddBoard = ({user,setBoards}) => {
     const [openCreate, setOpenCreate] = useState(false)
     const [errors, setErrors] = useState([]);
-    //const [value, setValue] = useState([]);
+    const [value, setValue] = useState([]);
     const [title, setTitle] = useState("")
     const [color, setColor] = useState("")
     const [form] = Form.useForm();
@@ -25,20 +26,16 @@ const AddBoard = ({user, setBoards}) => {
         color: color,
     }
 
-    // useEffect(() => {
-    //     fetch("/users")
-    //         .then((r) => r.json())
-    //         .then((usersData) => setUsers(usersData));
-    // }, [user]);
-
-    // async function fetchUserList(value) {
-    //     return fetch("/users")
-    //         .then(r=>r.json())
-    //         .then((data)=>
-    //             data.map((user)=>({label: `${user.id} ${user.name}`}))
-    //         )
-    // }
-
+    async function fetchUserList() {
+        return fetch("/users")
+            .then(r=>r.json())
+            .then((data)=>
+                data.map((user)=>({
+                    label: `${user.id} ${user.name}`,
+                    value: user.email
+                }))
+            )
+    }
     function handleSubmit() {
         fetch("/boards", {
             method: "POST",
@@ -64,16 +61,16 @@ const AddBoard = ({user, setBoards}) => {
 
     function handleSubmit2(board_id) {
         
-        // const users = value.map(v=>{return(v.label.split(' ')[0])})
-        // if (users.indexOf(user.id.toString())===-1) {
-        //     users.push(user.id.toString())
-        // }
-        // users.map((user)=>{
+        const users = value.map(v=>{return(v.label.split(' ')[0])})
+        if (users.indexOf(user.id.toString())===-1) {
+            users.push(user.id.toString())
+        }
+        users.map((user)=>{
             fetch("/userboards", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    user_id: parseInt(user.id), 
+                    user_id: parseInt(user), 
                     board_id: board_id
                 }),
             }).then((r)=>{
@@ -83,6 +80,7 @@ const AddBoard = ({user, setBoards}) => {
                     r.json().then((json)=>setErrors([...errors, json.errors]))
                 }
             })
+        })
         form.resetFields()
     }
 
@@ -108,22 +106,26 @@ const AddBoard = ({user, setBoards}) => {
                 >
                     <Input onChange={(e) => setTitle(e.target.value)} />
                 </Form.Item>
-                {/* <Form.Item
-                    label="Friends"
-                    name="friends"
-                    rules={[{required: true, message: 'Please select your friends!'}]}
-                > */}
-                    {/* <Select
+                <Form.Item
+                    label="collaborators"
+                    name="collaborators"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please select board collaborators!',
+                    },
+                    ]}
+                >
+                    <DebounceSelect
                         mode="multiple"
-                        allowClear
-                        //value={value}
-                        style={{ width: '100%' }}
-                        placeholder="Please select users"
-                        //defaultValue={['a10', 'c12']}
-                        onChange={(newValue) => {setValue(newValue) }}
-                        options={users}
-                        /> */}
-                {/* </Form.Item> */}
+                        value={value}
+                        placeholder="Select users"
+                        fetchOptions={fetchUserList}
+                        onChange={(newValue) => {
+                            setValue(newValue);
+                        }}
+                    />
+                </Form.Item>
                 <Form.Item label="Board Color">
                     <Radio.Group
                         onChange={(e) => setColor(e.target.value)}

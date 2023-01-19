@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 import BoardCard from './BoardCard'
 
-const BoardContainer = ({user,boards,setBoards}) => {
+const BoardContainer = ({user,boards,setBoards,users}) => {
 
   //get boards
       useEffect(() => {
