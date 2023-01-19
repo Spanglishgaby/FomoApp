@@ -16,7 +16,7 @@ function handleClose() {
 }
   return (
     <div className='postCardEx'>
-      <Card style={{ width: 300 }}
+      <Card title={post.user.name} style={{ width: 300 }}
           cover={<img src={post.url} />}
           actions={[
             <CommentOutlined  key="edit" onClick={handleOpen}/>,

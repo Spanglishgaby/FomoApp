@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Profile/Dashboard";
 import EditProfile from "./components/Profile/EditProfile";
 import Profile from "./components/Profile/Profile";
-import NewBoard from "./components/Board/BoardContainer";
 import PostContainer from "./components/Post/PostContainer";
 import Explore from "./components/Post/Explore";
 import Home from "./components/hero/Home";
@@ -55,8 +54,7 @@ return (
       <Route path="profile" element={<Profile user={user}  boards={boards} setBoards={setBoards}/>}/>
       <Route path="edit" element={<EditProfile setUsers={setUsers} users={users} user={user} setUser={setUser}/>}/>
       <Route path="explore" element={<Explore user={user} users={users} posts={posts} setPosts={setPosts}/>}/>
-      <Route path="new" element={<NewBoard user={user} setUsers={setUsers} users={users}/>}/>
-      <Route path="board/:id" element={<PostContainer user={user} />}/>
+      <Route path="board/:id" element={<PostContainer user={user} posts={posts} setPosts={setPosts}/>}/>
     </Route>
   </Routes>
 )

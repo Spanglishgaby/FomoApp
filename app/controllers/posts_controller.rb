@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    skip_before_action :authorized_user, only: [:index,:show]
+    # skip_before_action :authorized_user, only: [:index,:show]
 
     def index
         render json: Post.all, status: :ok
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     end
 
     def create 
-        post = Post.create(post_params)
+        post = Post.create!(post_params)
         if post.valid?
             render json: post, status: :created 
         else 
@@ -33,20 +33,15 @@ class PostsController < ApplicationController
         end
     end
 
-    def destroy 
-        post = post.find_by(id: params[:id])
-        if post 
-            post.destroy
-            head :no_content 
-        else  
-            render json: "post does not exist", status: :not_found 
-        end
+    def destroy
+        Post.find(params[:id]).destroy
+        head :no_content
     end
 
     private 
 
     def post_params 
-        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id, :post_id)
+        params.permit(:url, :post_content, :post_tag, :post_like, :post_save, :user_id, :board_id)
     end
 
 end

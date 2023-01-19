@@ -2,7 +2,7 @@ import {useState} from "react";
 import { Button, Modal, Form, Input,message} from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 
-const CreatePost = ({setPosts,board_id,user}) => {
+const CreatePost = ({setPosts,board_id,user,posts}) => {
     const [openCreate, setOpenCreate] = useState(false)
     // const [errors, setErrors] = useState([]);
     const [url, setUrl] = useState("")
@@ -17,16 +17,16 @@ const CreatePost = ({setPosts,board_id,user}) => {
     function handleClose() {
         setOpenCreate(false)
     }
-    const newPost = {
-        url: url,
-        post_content: post_content,
-        post_tag:post_tag,
-        user_id:user.id,
-        board_id:boardID,
-    }
-    console.log(newPost)
     
-    function handleSubmit() {
+    function handleSubmit(e) {
+        const newPost = {
+            url: url,
+            post_content: post_content,
+            post_tag:post_tag,
+            user_id:user.id,
+            board_id:boardID,
+        }
+        console.log(newPost)
         fetch("/posts", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -34,7 +34,7 @@ const CreatePost = ({setPosts,board_id,user}) => {
         })
         .then(r => r.json())
         .then(newPost=>{
-                    setPosts((currentPost) => [...currentPost, newPost]);
+                    setPosts([...posts, newPost]);
                     success()
                     setOpenCreate(false)
                 })

@@ -44,13 +44,12 @@ const Comments = ({post_id,user}) => {
     <Comment.Group>
     <Header as='h3' dividing>Comments</Header>
     {arrayComments}
-    
-
     <Form onSubmit={handleSubmit}>
       <Form.Input placeholder='Insert a Comment'  onChange={ e => setDescription(e.target.value)} />
       <Button content='Submit' labelPosition='left' icon='edit' primary />
     </Form>
-  </Comment.Group>  </div>
+  </Comment.Group>  
+  </div>
   )
 }
 

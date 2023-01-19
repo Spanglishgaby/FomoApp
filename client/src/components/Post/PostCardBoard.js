@@ -5,7 +5,7 @@ import { EditOutlined, DeleteOutlined  } from '@ant-design/icons';
 
 const { Meta } = Card;
 
-const PostCardPost = ({post, setPosts}) => {
+const PostCardPost = ({post, setPostUser}) => {
   const [openCreate, setOpenCreate] = useState(false)
   const [url, setUrl] = useState(post.url)
   const [post_content, setContent] = useState(post.post_content)
@@ -27,7 +27,7 @@ const PostCardPost = ({post, setPosts}) => {
 //console.log(updatePost)
 
 const handleUpdate = (updatedPost) =>
-  setPosts((current) => {
+setPostUser((current) => {
   return current.map((post) => {
       if (post.id === updatedPost.id) {
           return updatedPost;
@@ -55,24 +55,25 @@ const success = () => {
 };
 //Delete Profile
 const handleDelete = (id) =>
-  setPosts((current) => current.filter((p) => p.id !== id));
+setPostUser((current) => current.filter((post) => post.id !== id));
 
 function handleSubmitDelete() {
-  fetch(`posts/${post.id}`, {
-  method: "DELETE"
-  }).then(()=>{
-  handleDelete(post.id)
-  })
+  fetch(`/posts/${post.id}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'}
+})
+.then( () => { handleDelete(post.id)} )
 }
   return (
   <div className='postCardEx'>
-    <Card style={{ width: 300 }}
+    <Card title={post.user.name} style={{ width: 300 }}
         cover={ <img alt="example" src={post.url} />}
         actions={[
           <DeleteOutlined key="delete"  value={post.id} onClick={handleSubmitDelete}/>,
           <EditOutlined key="edit"  onClick={handleOpen}/>,
           ]}
     >
+      
       <Meta description={post.post_content}/>
     </Card>
   <br></br>

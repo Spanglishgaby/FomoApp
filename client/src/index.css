@@ -121,8 +121,8 @@ video {
 .AddBoard{
   font-size: 22px;
   position: relative;
-  top: 140px;
-  right: 200px;
+  top: 100px;
+  right: 0px;
 }
 .AddPost{
   font-size: 22px;
