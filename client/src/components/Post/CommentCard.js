@@ -22,7 +22,7 @@ const CommentCard = ({comment,currentuser, setAllComments}) => {
         <Comment>
         <Comment.Avatar src={comment.user.profile_photo} />
         <Comment.Content>
-            <Comment.Author as='a'>{comment.user.name}</Comment.Author>
+            <Comment.Author as='a'>{comment.author}</Comment.Author>
             <Comment.Text>
             {comment.description}
             </Comment.Text>
