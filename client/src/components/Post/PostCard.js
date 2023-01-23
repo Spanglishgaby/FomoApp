@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {Card, Modal} from 'antd';
-import {CommentOutlined} from '@ant-design/icons';
+import {CommentOutlined,HeartOutlined } from '@ant-design/icons';
 import Comments from './Comments';
 const { Meta } = Card;
 
@@ -20,6 +20,7 @@ function handleClose() {
           cover={<img src={post.url} />}
           actions={[
             <CommentOutlined  key="edit" onClick={handleOpen}/>,
+            <HeartOutlined />
             ]}
       >
       <Meta description={post.post_content}/>

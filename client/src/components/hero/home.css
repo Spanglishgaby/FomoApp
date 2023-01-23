@@ -1,0 +1,27 @@
+
+
+
+/* &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+  } */
+
+
+
+
+  
+  /* &:hover .social-icon {
+    opacity: 1;
+    top: 0;
+  } */
+
+  /*&:hover .front__face-photo,
+  &:hover .front__footer {
+    opacity: 1;
+  }*/
+

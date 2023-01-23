@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout, Menu} from 'antd';
-import { SmileOutlined ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
+import { UserOutlined  ,HomeOutlined,EditOutlined,LogoutOutlined,CompassOutlined} from '@ant-design/icons';
 import { Link ,useNavigate,Outlet } from "react-router-dom";
 import logo from "./logo.png"
 
@@ -30,7 +30,7 @@ const Dashboard = ({setUser, user}) => {
     <Layout>
       <Sider width={300} id="sidebar">
         <Menu mode="inline">
-          <Menu.Item key={0}disabled icon={<SmileOutlined />}>Hello, {user.name}</Menu.Item>
+          <Menu.Item key={0}disabled icon={<UserOutlined />}>Hello, {user.name}</Menu.Item>
           <Menu.Item key={1} icon={<HomeOutlined  />}>
             <Link to="/dashboard/profile">Home</Link>
           </Menu.Item>
