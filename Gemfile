@@ -38,3 +38,4 @@ gem "active_model_serializers", "~> 0.10.12"
 gem 'faker'
 gem 'activerecord'
 gem 'activestorage'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'

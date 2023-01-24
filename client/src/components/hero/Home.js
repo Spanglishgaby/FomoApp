@@ -1,5 +1,5 @@
 import Header from './Header'
-import { EnvironmentOutlined,GithubOutlined,LinkedinOutlined,TwitterOutlined} from '@ant-design/icons';
+import { EnvironmentOutlined,GithubOutlined,LinkedinOutlined,TwitterOutlined,MailOutlined} from '@ant-design/icons';
 //import background from './background.png'
 
 const Home = ({updateUser}) => {
@@ -33,7 +33,14 @@ const Home = ({updateUser}) => {
               <div className="text"><h1>Social Media Project developed on React js and Ruby on Rails </h1></div>
           </div>
         <div className="footer">
-          <p>Phase 5 Final Project</p>
+          <p className="textfooter">© 2023 Gabriela Arnott</p>
+          <div className="social-media-wrapper">
+            <a href="https://github.com/Spanglishgaby/FomoApp" className="iconFooter"><GithubOutlined className="fab"/></a> 
+            <a href="https://www.linkedin.com/in/gabrielayuriko/" className="iconFooter"><LinkedinOutlined className="fab"/></a>
+            <a href="https://twitter.com/spanglishgaby" className="iconFooter"><TwitterOutlined className="fab"/></a>
+            <a href="mailto:ygabriela.arnott@gmail.com" className="iconFooter"><MailOutlined  className="fab"/></a>
+            
+          </div>
         </div>
     </>
   )

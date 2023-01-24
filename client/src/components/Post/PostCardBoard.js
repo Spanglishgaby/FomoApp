@@ -67,7 +67,7 @@ function handleSubmitDelete() {
   return (
   <div className='postCardEx'>
     <Card title={post.user.name} style={{ width: 300 }}
-        cover={ <img alt="example" src={post.url} />}
+        cover={ <img alt="example" src={post.url} style={{  height: 400 }}/>}
         actions={[
           <DeleteOutlined key="delete"  value={post.id} onClick={handleSubmitDelete}/>,
           <EditOutlined key="edit"  onClick={handleOpen}/>,

@@ -1,10 +1,19 @@
 import {useState, useEffect} from 'react'
 import CommentCard from './CommentCard'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import data from "@emoji-mart/data"
+import Picker from '@emoji-mart/react'
 
 const Comments = ({post_id,user}) => {
+    const [showPicker, setShowPicker] = useState(false);
     const [ allComments, setAllComments ] = useState ( [] )
     const [ description, setDescription ] = useState ( "" )
+
+    const onEmojiClick = ( emojiObject) => {
+      setDescription (prevInput => prevInput + emojiObject.native);
+      setShowPicker(false);
+    };
+
     // render comment based on the post user clicked on
     useEffect( () =>{
     fetch (`/postcomments/${post_id}`)
@@ -45,7 +54,12 @@ const Comments = ({post_id,user}) => {
     <Header as='h3' dividing>Comments</Header>
     {arrayComments}
     <Form onSubmit={handleSubmit}>
-      <Form.Input placeholder='Insert a Comment'  onChange={ e => setDescription(e.target.value)} />
+      <Form.Input placeholder='Insert a Comment' width={12} onChange={ e => setDescription(e.target.value)} />
+      <img
+          className="emoji-icon"
+          src="https://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
+          onClick={() => setShowPicker(val => !val)} />
+        {showPicker &&<Picker data={data} onEmojiSelect={onEmojiClick}/>}
       <Button content='Submit' labelPosition='left' icon='edit' primary />
     </Form>
   </Comment.Group>  

@@ -177,7 +177,12 @@ width: 700px;
   color: white;
   text-align:center;
   font-size: 12px;
-  height: 50px;
+  height: 100px;
+}
+.iconFooter{
+margin-left: 5px;
+margin-right: 5px;
+color: #fff; 
 }
 /* Home Creator */
 .background{
@@ -379,4 +384,18 @@ margin-top: 250px;
 margin-right:200px;
 color: #fff;
 text-shadow: #071011;
+}
+.textfooter{
+  padding-top: 20px;
+}
+.like{
+  text-align: center;
+  position:absolute;
+  left: 50px;
+}
+.emoji-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 65px;
 }
