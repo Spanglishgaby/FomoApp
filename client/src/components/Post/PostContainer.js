@@ -3,16 +3,14 @@ import { useParams } from 'react-router-dom';
 //import CreatePost from "./CreatePost";
 import { Button, Form} from 'semantic-ui-react'
 import { Modal,message} from 'antd'
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined  } from '@ant-design/icons';
 import PostCardBoard from "./PostCardBoard";
+
 
 
 const PostContainer = ({user,posts,setPosts}) => {
   const [ postsUser, setPostUser ] = useState ( [] )
   const [openCreate, setOpenCreate] = useState(false)
-  const [url, setUrl] = useState("")
-  const [post_content, setContent] = useState("")
-  const [post_tag, setTag] = useState("")
   const { id } = useParams();
   let boardID = parseInt(id)
 
@@ -30,29 +28,57 @@ const PostContainer = ({user,posts,setPosts}) => {
   function handleClose() {
     setOpenCreate(false)
   }
-
-  const newPost = {
-    url: url,
-    post_content: post_content,
-    post_tag:post_tag,
-    user_id:user.id,
-    board_id:boardID,
+////////
+const [formData, setFormData] = useState({
+  url: '',
+  post_content:'',
+  post_tag: '',
+  user_id:user.id,
+  board_id:boardID,
+  image: null
+})
+const handleInput = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value
+  })
 }
-//console.log(newPost)
-  function handleSubmit() {
+
+const handleFileChange = (event) => {
+  // Check that the file is a PNG or JPG
+  if (event.target.files[0].type === 'image/png' || event.target.files[0].type === 'image/jpeg') {
+    setFormData({
+      ...formData,
+      image: event.target.files[0]
+  })
+  } else {
+      alert('Please select a PNG or JPG file');
+  }
+};
+
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const entityData = new FormData()
+    // Credit to Ignas Butautas for this handy loop
+    for (const property in formData) {
+        entityData.append(
+          property, formData[property]
+        )
+    }
+
     fetch("/posts", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newPost),
-    })
-    .then(r => r.json())
-    .then(newPost=>{
-                setPosts([...posts, newPost]);
-                success()
-                setOpenCreate(false)
-            })
-            
-    }
+        body:entityData,
+      })
+      .then(r => r.json())
+      .then(newPost =>{
+              setPosts([...posts, newPost])
+              success()
+              setOpenCreate(false)
+          console.log(newPost)
+      })
+  }
     
 
   const success = () => {
@@ -64,6 +90,7 @@ const PostContainer = ({user,posts,setPosts}) => {
       return <PostCardBoard key={post.id}  post={post} setPostUser={setPostUser}/>
     });
 //////
+
   return (
     <>
     <div className="AddPost">
@@ -76,9 +103,13 @@ const PostContainer = ({user,posts,setPosts}) => {
             footer={null}
         >
           <Form onSubmit={handleSubmit}>
-            <Form.Input placeholder='Please input the post URL'  onChange={(e) => setUrl(e.target.value)} />
-            <Form.Input placeholder='Please input the post Description'  onChange={(e) => setContent(e.target.value)}  />
-            <Form.Input placeholder='Please input a tag'  onChange={(e) => setTag(e.target.value)}  />
+            <br></br>
+            <input type="file" onChange={handleFileChange} accept="image/png, image/jpeg"  />
+            <br></br>
+            <br></br>
+            {/* <Form.Input placeholder='Please input the post URL' name= "url" onChange={handleInput} /> */}
+            <Form.Input placeholder='Please input the post Description' name= "post_content" onChange={handleInput}  />
+            <Form.Input placeholder='Please input a tag' name= "post_tag" onChange={handleInput}  />
             <Button content='Submit' labelPosition='left' icon='edit' primary />
           </Form>
         </Modal>

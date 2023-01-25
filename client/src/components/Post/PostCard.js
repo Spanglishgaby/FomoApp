@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Card, Modal} from 'antd';
+import {Card, Modal,Image} from 'antd';
 import {CommentOutlined,HeartOutlined,HeartTwoTone  } from '@ant-design/icons';
 import Comments from './Comments';
 const { Meta } = Card;
@@ -34,7 +34,7 @@ const handleLikes = () =>{
   return (
     <div className='postCardEx'>
       <Card title={post.user.name} style={{ width: 300  }}
-          cover={<img src={post.url} style={{  height: 400 }}/>}
+          cover={<Image alt="example" src={post.image_url ? post.image_url : post.url} style={{  height: 400 }}/>}
           actions={[
             <CommentOutlined  key="edit" onClick={handleOpen}/>,
             <div  onClick = {handleLikes} >

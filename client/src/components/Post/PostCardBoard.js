@@ -67,7 +67,7 @@ function handleSubmitDelete() {
   return (
   <div className='postCardEx'>
     <Card title={post.user.name} style={{ width: 300 }}
-        cover={ <img alt="example" src={post.url} style={{  height: 400 }}/>}
+        cover={ <img alt="example" src={post.image_url ? post.image_url : post.url} style={{  height: 400 }}/>}
         actions={[
           <DeleteOutlined key="delete"  value={post.id} onClick={handleSubmitDelete}/>,
           <EditOutlined key="edit"  onClick={handleOpen}/>,
@@ -89,9 +89,9 @@ function handleSubmitDelete() {
             wrapperCol={{span: 26,}}
             onFinish={handleSubmit}
             >
-                <Form.Item label="Post Title">
+                {/* <Form.Item label="Post Title">
                     <Input type="text" defaultValue={post.url} onChange={(e) => setUrl(e.target.value)} />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item label="Post Description">
                     <Input type="text" defaultValue={post.post_content} onChange={(e) => setContent(e.target.value)} />
                 </Form.Item>
