@@ -40,6 +40,11 @@ function App() {
     .then ( res => res.json())
     .then (setUsers)
   },[user])
+  //////search
+  const [search ,setSearch]=useState("")
+  const searchResult= posts.filter((searchText)=>{
+    return(searchText.post_content.toLowerCase().includes(search.toLowerCase())||searchText.post_tag.toLowerCase().includes(search.toLowerCase()))
+   })
 
 return (
   <Routes>
@@ -47,7 +52,7 @@ return (
     <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />}>
       <Route path="profile" element={<Profile user={user}  boards={boards} setBoards={setBoards}/>}/>
       <Route path="edit" element={<EditProfile setUsers={setUsers} users={users} user={user} setUser={setUser}/>}/>
-      <Route path="explore" element={<Explore user={user} users={users} posts={posts} setPosts={setPosts}/>}/>
+      <Route path="explore" element={<Explore user={user} posts={searchResult} setSearch={setSearch} setPosts={setPosts}/>}/>
       <Route path="board/:id" element={<PostContainer user={user} posts={posts} setPosts={setPosts}/>}/>
     </Route>
   </Routes>
