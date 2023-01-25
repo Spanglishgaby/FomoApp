@@ -89,9 +89,9 @@ function handleSubmitDelete() {
             wrapperCol={{span: 26,}}
             onFinish={handleSubmit}
             >
-                <Form.Item label="Post Title">
+                {/* <Form.Item label="Post URL">
                     <Input type="text" defaultValue={post.url} onChange={(e) => setUrl(e.target.value)} />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item label="Post Description">
                     <Input type="text" defaultValue={post.post_content} onChange={(e) => setContent(e.target.value)} />
                 </Form.Item>

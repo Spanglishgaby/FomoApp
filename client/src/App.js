@@ -24,16 +24,16 @@ function App() {
       if (r.ok) {
         r.json().then((user) => 
         setUser(user));
-        fetchPost()
+        
       }
     });
   }, []);
 
-  const fetchPost =() =>{
+  useEffect( () =>{
     fetch("/posts")
     .then(res => res.json())
     .then(setPosts)
-    }
+    },[user])
 
   useEffect( () =>{
     fetch ("/users/:id")
