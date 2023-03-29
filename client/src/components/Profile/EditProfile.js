@@ -89,7 +89,7 @@ const EditProfile = ({user, setUser,setUsers, users}) => {
         </Form.Field>
         <Form.Field required={true}>
             <label>Password</label>
-            <input placeholder='Password' value={[updateUser.password]} onChange={(e) => setPassword(e.target.value)}  />
+            <input placeholder='Password' type="password" value={[updateUser.password]} onChange={(e) => setPassword(e.target.value)}  />
         </Form.Field>
 
         <Button type='submit'>Save</Button>

@@ -14,7 +14,7 @@ const Comments = ({post_id,user}) => {
       setDescription( description + emoji.native);
       
     };
-
+    
     // render comment based on the post user clicked on
     useEffect( () =>{
     fetch (`/postcomments/${post_id}`)
@@ -55,12 +55,16 @@ const Comments = ({post_id,user}) => {
     <Header as='h3' dividing>Comments</Header>
     {arrayComments}
     <Form onSubmit={handleSubmit}>
-      <Form.Input placeholder='Insert a Comment' width={12} onChange={ e => setDescription(e.target.value)} value={description}/>
+
+      <Form.Input placeholder='Insert a Comment' width={12} onChange={ e => setDescription(e.target.value)}  value={description}/>
+
       <img
           className="emoji-icon"
           src="https://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
           onClick={() => setShowPicker(val => !val)} />
-        {showPicker &&<Picker data={data} onEmojiSelect={addEmoji}/>}
+
+        {showPicker &&<Picker data={data} onEmojiSelect={ addEmoji}/>}
+
       <Button content='Submit' labelPosition='left' icon='edit' primary />
     </Form>
   </Comment.Group>  

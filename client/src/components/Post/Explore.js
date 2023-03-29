@@ -8,8 +8,12 @@ const { Search } = Input;
 const suffix = (
   <AudioOutlined style={{fontSize: 16, color: '#1890ff'}}/>);
 
-const Explore = ({posts, user, setPosts,users}) => {
+const Explore = ({posts, user, setPosts,setSearch}) => {
 
+  const handleSearch=(e)=>{
+    //console.log(e.target.value)
+    setSearch(e.target.value)
+   }
   let postArray = posts && posts.map((post) => (
     <PostCard
       key={post.id}
@@ -21,7 +25,7 @@ const Explore = ({posts, user, setPosts,users}) => {
   return (
     <>
     <Space direction="vertical">
-    <Search placeholder="input search text" style={{ width: 200 }} icon={suffix}/>
+    <Search placeholder="input search text" style={{ width: 200 }} icon={suffix} onChange={handleSearch}/>
     </Space>
     <div className='postContainer'>
     {postArray}

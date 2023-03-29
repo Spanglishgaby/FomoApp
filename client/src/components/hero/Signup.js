@@ -40,11 +40,11 @@ function Signup({ updateUser }) {
     const success = () => {
         message.success('Welcome to FOMO! Now LogIn!');
     };
-        function handleInputChange(e) {
-            setNewUser({
-                ...newUser, [e.target.name]:e.target.value
-            })
-        }
+    function handleInputChange(e) {
+        setNewUser({
+            ...newUser, [e.target.name]:e.target.value
+        })
+    }
     return (
     <>
         <Button shape='round' className="BtnSignUp" onClick={handleOpen}>Register</Button>
