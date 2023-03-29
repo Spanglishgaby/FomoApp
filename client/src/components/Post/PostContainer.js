@@ -76,7 +76,7 @@ const handleFileChange = (event) => {
               setPosts([...posts, newPost])
               success()
               setOpenCreate(false)
-          console.log(newPost)
+          // console.log(newPost)
       })
   }
     

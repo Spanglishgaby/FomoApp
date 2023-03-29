@@ -1,79 +1,83 @@
-# README
-App
-* Nested Route - Done
-* Authentication - Done
+# FOMO APP | A Full Stack App
+This app lets you create files to organize and share content of certain interest with your friends in the network. Only the people signed up and tagged in the file will have acces to the shared information there. iIn every file you can upload a image from your computer add some tags and description.
 
-*Home => Login => Signup
-- Add Header/ SignIn - SignOut Modals - Done
-- Add Creator information
-- Add Social media links (GitRepo - LinkedIn)
+demo here
 
-* Login 
-- Alert error messages- Done
-- Navigate to Profile - Done
-- Create a new session - Done
+## Frontend Technologies Used 
 
-*Dashboard => Logout
-- LogOut Delete Sessions - Done
-- Sidebar / Nested Routes - Done
-- Add Welcome User Text - Done
-- Add Logo Link to Home - Done
+JavaScript
+React
+Mui
+React Router
+Backend
+## Backend Technologies Used 
+Ruby on Rails
+ActiveRecord
+PostgreSQL
+Bcrypt
+Active Model Serializers
 
-* Logout 
-- Create new user - Done
-- Add Password confirmation - Done
-- Add Password validation min 10 digits - Done
-- Add validation Email uniqueness - Done
-- Add success message - Done
-- Add error message - Done
+## How To Use
+```console
+Install and run:
 
-*Profile => AddBoard => BoardContainer => BoardCard
-- User info and profile photo - Done
-- AddBoard Modal - done
-- Style Container center - Done
+npm install
 
-*AddBoard
-- Create Board (title - Color) - Done
-- UserBoard (user_id, board_id) - Done (Assigned to the current user)
-- Create success message - Done
-- Render user , create Select multiple user , render userBoard same Board_id and different user_id
+# create migrations with activerecord
+rails db:migrate
 
-*BoardContainer
-- Get Current User Boards - Done
-- Pass props to BoardCard - Done
-- CSS Position and Display - Done
+# if you would like to use seed data
+rails db:seed
 
-*BoardCard => PostBoardContainer
-- Add Icons onClick Delete/Update - Done
-- Add Modal Form(Update) - Done
-- CSS Grid spacing - Done
-- Add RadioButton  to update board color - Done
-- Fix Update Fetch (add index) - Done
-- Fix Delete Fetch (add index) - Done
-- OnClick Card send you to the Post Container - Done
-- Post container show post per PostTag
+# start server
+rails s
 
-*Explore => PostCard
-- Get all posts - Done
-- Send props to PostCard - Done
+# start up react
+npm install --prefix client
 
-*PostCardExplore
-- Show all the posts(images) - Done
-- Create a conditional to show videos and images
-- Add search per Tag or Tag buttons(filter)
-- Show post Description, Likes and Tags
+npm start --prefix client
 
-*PostBoardContainer => PostBoardCard
-- Show Posts per Board_id - Done
-- Add Icon onClick Open Create New Post -Done
-- Add Form on Modal Create new Post -Done
-- Fetch Create Post
+RoR uses port 3000 by default. React app will open up on port 4000.
+```
+## Features
+### App
 
-*PostBoardCard
-- Add onClick Delete/ Update icons - Done
-- Add Modal Form(Update) - Done 
-- CSS Grid spacing - Done
-- Fetch Update/Delete
-- Like icon ++1
-- Show post Description, Likes and Tags
+* Ability to add new users and login
+* Persistent login using cookies
+* Ability to delete your own profile
+* Unique design
 
+
+## Boards
+
+## Profile
+
+
+### Backend Relationships:
+### Associations
+* User has many Userboards
+* User has many Boards through Userboards
+* Board has many Userboards
+* Board has many Users through Userboards
+* User has many Posts
+* User has many Comments
+* Board has many Posts
+* Post belongs to a User
+* Post belongs to a Board
+* Post has many Comments
+* Comment belongs to a User
+* Comment belongs to a Post
+### Fetch Example
+#### Users
+#### Boards
+#### Posts
+#### Comments
+## Resources
+
+- [create-react-app][]
+- [dbdiagram.io][]
+- [Postman][postman download]
+
+[create-react-app]: https://create-react-app.dev/docs/getting-started
+[dbdiagram.io]: https://dbdiagram.io/
+[postman download]: https://www.postman.com/downloads/

@@ -30,7 +30,10 @@ const Home = ({updateUser}) => {
                   </div>
                 </div>
               </div>
-              <div className="text"><h1>Social Media Project developed on React js and Ruby on Rails </h1></div>
+              <div className="text">
+                <h1> I created FOMO to share my favorite images with my favorite people. </h1>
+                <h2>Developed using React JS, Ruby on Rails, Bcrypt and Active Storage</h2>
+                </div>
           </div>
         <div className="footer">
           <p className="textfooter">© 2023 Gabriela Arnott</p>
